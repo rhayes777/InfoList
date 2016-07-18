@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Cell"
+    android:padding="@dimen/padding_info_list_cell"
+    android:gravity="center_vertical">
+    <TextView
+        android:id="@+id/text"
+        android:layout_margin="@dimen/margin_info_list"
+        style="@style/StatusText"
+        android:layout_width="0dp"
+        android:text="Sample "
+        android:layout_weight="0.4"
+        />
+    <ImageView
+        android:layout_margin="@dimen/margin_info_list"
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="0.2"
+        android:id="@+id/imageIcon"
+        android:scaleType="fitCenter"
+        android:src="@drawable/statusok"
+        />
+    <ImageView
+
+        android:layout_margin="@dimen/margin_info_list"
+        android:layout_height="@dimen/layout_status_image"
+        android:layout_width="0dp"
+        android:layout_weight="0.2"
+        android:id="@+id/imageToday"
+        android:scaleType="fitCenter"
+        android:src="@drawable/statusok"
+        />
+    <ImageView
+        android:layout_margin="@dimen/margin_info_list"
+
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="0.2"
+        android:id="@+id/image72"
+        android:scaleType="fitCenter"
+        android:src="@drawable/statusnot"
+        />
+</LinearLayout>

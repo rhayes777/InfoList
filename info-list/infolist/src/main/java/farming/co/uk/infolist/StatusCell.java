@@ -1,27 +1,20 @@
-package farmingonline.co.uk.wateraware.wateraware.classes.libs.infolist;
+package farming.co.uk.infolist;
 
+import android.media.Image;
 import android.view.View;
 import android.widget.ImageView;
-
-import farming.co.uk.wateraware.R;
 
 public class StatusCell extends Cell {
 
     private final int imageIdToday;
     private final int imageId72;
     private final int imageIdIcon;
-    
-    private View.OnClickListener listenerIcon, listenerToday, listener72; 
-    
+
+    private View.OnClickListener listenerIcon, listenerToday, listener72;
+
 
     public StatusCell(String text, int imageIdToday, int imageId72, int imageIdIcon) {
         super(text, R.layout.cell_status);
-        if (imageIdToday <= 0)
-            imageIdToday = R.drawable.white;
-        if (imageId72 <= 0)
-            imageId72 = R.drawable.white;
-        if (imageIdIcon <= 0)
-            imageIdIcon = R.drawable.white;
         this.imageIdToday = imageIdToday;
         this.imageId72 = imageId72;
         this.imageIdIcon = imageIdIcon;
@@ -29,12 +22,6 @@ public class StatusCell extends Cell {
 
     public StatusCell(String text, int imageIdToday, int imageId72, int imageIdIcon, int layoutName) {
         super(text, layoutName);
-        if (imageIdToday <= 0)
-            imageIdToday = R.drawable.white;
-        if (imageId72 <= 0)
-            imageId72 = R.drawable.white;
-        if (imageIdIcon <= 0)
-            imageIdIcon = R.drawable.white;
         this.imageIdToday = imageIdToday;
         this.imageId72 = imageId72;
         this.imageIdIcon = imageIdIcon;
@@ -51,18 +38,26 @@ public class StatusCell extends Cell {
     public int getImageIdIcon() {
         return imageIdIcon;
     }
-    
+
+    private ImageView setImageForView(int imageId, int imageViewId, View view) {
+        ImageView imageView = (ImageView) view.findViewById(imageViewId);
+        if (imageId > 0) {
+            imageView.setImageResource(imageId);
+            imageView.setVisibility(View.VISIBLE);
+        } else
+            imageView.setVisibility(View.GONE);
+        return imageView;
+    }
+
 
     @Override
     public void fillView(View view) {
         super.fillView(view);
         ImageView imageToday, image72, imageIcon;
-        imageToday = (ImageView) view.findViewById(R.id.imageToday);
-        imageToday.setImageResource(getImageIdToday());
-        image72 = (ImageView) view.findViewById(R.id.image72);
-        image72.setImageResource(getImageId72());
-        imageIcon = (ImageView) view.findViewById(R.id.imageIcon);
-        imageIcon.setImageResource(getImageIdIcon());
+
+        imageToday = setImageForView(getImageIdToday(), R.id.imageToday, view);
+        image72 = setImageForView(getImageId72(), R.id.image72, view);
+        imageIcon = setImageForView(getImageIdIcon(), R.id.imageIcon, view);
 
         if (listener72 != null)
             image72.setOnClickListener(listener72);

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<farmingonline.co.uk.wateraware.wateraware.classes.libs.widget.MyTextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Cell"
+    android:textSize="@dimen/text_medium"
+    android:textColor="@color/adama_earth"
+    android:gravity="center"
+    android:id="@+id/text"
+    android:allowUndo="false" />

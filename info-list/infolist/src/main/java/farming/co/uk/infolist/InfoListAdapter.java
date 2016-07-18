@@ -1,4 +1,4 @@
-package farmingonline.co.uk.wateraware.wateraware.classes.libs.infolist;
+package farming.co.uk.infolist;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,38 +8,35 @@ import android.widget.BaseAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import farming.co.uk.wateraware.R;
-import farmingonline.co.uk.wateraware.wateraware.controller.RootActivity;
+import java.util.LinkedHashSet;
 
 public class InfoListAdapter extends BaseAdapter {
 
     private final Context context;
+    private final LinkedHashSet<Integer> layoutIds;
 
     public InfoListAdapter(Context context, Section... sections) {
         this.sections = new ArrayList<>();
-        this.sections.addAll(Arrays.asList(sections));
+        this.layoutIds = new LinkedHashSet<>();
+        for(Section section : Arrays.asList(sections))
+            addSection(section);
         this.context = context;
         notifyDataSetChanged();
     }
 
     private ArrayList<Section> sections;
 
-    public InfoListAdapter(RootActivity context, ArrayList<Section> sections) {
-        this.context = context;
-        this.sections = sections;
-        notifyDataSetChanged();
-    }
-
     public InfoListAdapter(Context context, ArrayList<String> strings) {
         this.sections = new ArrayList<>();
-        sections.add(new Section(strings));
+        this.layoutIds = new LinkedHashSet<>();
+        addSection(new Section(strings));
         this.context = context;
         notifyDataSetChanged();
     }
 
     public void addSection(Section section) {
         sections.add(section);
+        layoutIds.addAll(section.getLayoutIds());
         notifyDataSetChanged();
     }
 
@@ -67,25 +64,19 @@ public class InfoListAdapter extends BaseAdapter {
 
     @Override
     public int getViewTypeCount() {
-        return 5;
+        return layoutIds.size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        switch (getCell(position).getLayoutId()) {
-            case R.layout.cell_title:
-                return 0;
-            case R.layout.cell_info:
-                return 1;
-            case R.layout.cell_status:
-                return 2;
-            case R.layout.cell_centered:
-                return 3;
-            case R.layout.cell_left_justified:
-                return 4;
-            default:
-                return 0;
-        }
+        int n = 0;
+        int layoutId = getCell(position).getLayoutId();
+        for (Integer layoutId1 : layoutIds)
+            if (layoutId1 == layoutId)
+                return n;
+            else
+                n++;
+        return -1;
     }
 
     public Index positionToIndex(int position) {

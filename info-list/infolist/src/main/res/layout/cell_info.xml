@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Cell"
+    android:padding="@dimen/padding_info_list_cell"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:layout_margin="@dimen/padding_cell"
+        android:layout_width="@dimen/layout_status_image"
+        android:layout_height="@dimen/layout_status_image"
+        android:id="@+id/image"
+
+        />
+
+    <TextView
+        android:layout_margin="@dimen/padding_cell"
+        style="@style/StatusText"
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:text="Sample text with stuff"
+        />
+
+
+</LinearLayout>

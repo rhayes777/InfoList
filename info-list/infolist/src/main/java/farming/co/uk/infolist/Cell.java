@@ -1,12 +1,8 @@
-package farmingonline.co.uk.wateraware.wateraware.classes.libs.infolist;
+package farming.co.uk.infolist;
 
 import android.graphics.Typeface;
 import android.view.View;
 import android.widget.TextView;
-
-import farming.co.uk.wateraware.R;
-import farmingonline.co.uk.wateraware.wateraware.classes.ADAMAStyles;
-import farmingonline.co.uk.wateraware.wateraware.controller.RootActivity;
 
 public class Cell {
 
@@ -15,7 +11,6 @@ public class Cell {
 
     private Typeface typeface;
     private int textColor;
-//    private float textSize;
     private View.OnClickListener onClickListener;
     private final int textId;
 
@@ -50,7 +45,6 @@ public class Cell {
     }
 
     public Cell(int textId, View.OnClickListener onClickListener) {
-        System.out.println("text_id SET to " + textId);
         this.textId = textId;
         this.onClickListener = onClickListener;
         this.layoutId = R.layout.cell_left_justified;
@@ -59,10 +53,8 @@ public class Cell {
     }
 
     public void setDefaults() {
-        ADAMAStyles adamaStyles = RootActivity.getInstance().getADAMAStyles();
-        this.typeface = adamaStyles.getBrownPro();
-        this.textColor = adamaStyles.getCorporateEarth();
-//        this.textSize = 20;
+        this.typeface = Typeface.create("robot", 16);
+        this.textColor = android.R.color.black;
     }
 
     protected int getLayoutId() {
@@ -77,16 +69,12 @@ public class Cell {
         this.onClickListener = onClickListener;
     }
 
-//    public void setTextSize(float textSize) {
-//        this.textSize = textSize;
-//    }
-
     public void setTypeface(Typeface typeface) {
         this.typeface = typeface;
     }
 
     public void setTextColor(int textColor) {
-        this.textColor = RootActivity.getInstance().getADAMAStyles().getColor(textColor);
+        this.textColor = textColor;
     }
 
     public void fillView(View view) {
@@ -95,13 +83,12 @@ public class Cell {
         String text = getText();
         if (text != null)
             textView.setText(text);
-        System.out.println("textId = " + textId);
         if (textId != -1)
             textView.setText(textId);
 
         textView.setTypeface(typeface);
         textView.setTextColor(textColor);
-//        textView.setTextSize(textSize);
+
     }
 
 }

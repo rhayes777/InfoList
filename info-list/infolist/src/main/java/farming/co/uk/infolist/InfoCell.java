@@ -1,4 +1,4 @@
-package farmingonline.co.uk.wateraware.wateraware.classes.libs.infolist;
+package farming.co.uk.infolist;
 
 import android.view.View;
 import android.widget.ImageView;
